@@ -1,0 +1,11 @@
+.hidden{
+    display: none;
+}
+.main-data {
+    position: relative;
+}
+.loader, .country-info {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
