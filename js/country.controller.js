@@ -18,7 +18,8 @@ elGetCountryBtn.addEventListener('click', function () {
     console.log(countryName)
     getCountryData(countryName)
         .then(country => {
-            renderCountry(country)
+            renderCountry(country[0])
+            console.log(country)
         })
         .catch(err => {
             console.error(`Encountered the following error while fetching data: ${err}`)
@@ -26,18 +27,20 @@ elGetCountryBtn.addEventListener('click', function () {
 })
 
 function renderCountry(country) {
+    // console.log(country)
+    const { countryName, population, area, neighbors, flag } = country
+    console.log(countryName, population, area, neighbors, flag)
+    const elCountryName = document.querySelector('.name')
+    elCountryName.innerText = `Country name: ${countryName}`
 
-    const elCountryData = document.querySelector('.country-data')
-    console.log(country)
-    //TODO
+    const elFlag = document.querySelector('.flag')
+    elFlag.src = flag
 
-    const strHTMLs = `
-        country name: ${country[0].countryName}
-        population: ${country[0].population}
-        area: ${country[0].area}
-        neighbors: ${country[0].neighbors}
-        flag: ${country[0].flag}`
+    const elPopulation = document.querySelector('.population')
+    elPopulation.innerText = `Population: ${population}`
 
-    elCountryData.innerText = strHTMLs
+    const elArea = document.querySelector('.area')
+    elArea.innerText = `area: ${area}`
+
 }
 
