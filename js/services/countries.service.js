@@ -21,6 +21,7 @@ function getCountryByName(name) {
         }).then(gCountriesCache => {
             saveToStorage(STORAGE_KEY, gCountriesCache)
             return gCountriesCache[name]
+            
         }
         )
 }
