@@ -54,3 +54,22 @@ function onClearCache(){
     gCountriesCache = loadFromStorage(STORAGE_KEY) || {}
 }
 
+function showLoader(){
+    const elLoader = document.querySelector('.loader')
+    elLoader.classList.remove('hidden')
+}
+
+function hideLoader(){
+    const elLoader = document.querySelector('.loader')
+    elLoader.classList.add('hidden')
+}
+
+function showCountry(){
+    const elCountry = document.querySelector('.country-info')
+    elCountry.classList.remove('hidden')
+}
+
+function hideCountry(){
+    const elCountry = document.querySelector('.country-info')
+    elCountry.classList.add('hidden')
+}
