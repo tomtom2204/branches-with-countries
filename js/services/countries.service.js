@@ -17,7 +17,6 @@ function getCountryData(countryName) {
                 ts: Date.now(),
                 data: getCountry(countryData),
             }
-            console.log('test: ', gCountriesCache[countryName].data)
             saveToStorage('countryData', gCountriesCache)
             return gCountriesCache[countryName].data
         })

@@ -12,14 +12,13 @@ const elGetCountryBtn = document.querySelector('.get-country')
 
 // Add a click event listener
 elGetCountryBtn.addEventListener('click', function () {
-    // alert('Button was clicked!')
+
     const elCountryName = document.querySelector('.country-name')
     const countryName = elCountryName.value
-    console.log(countryName)
+
     getCountryData(countryName)
         .then(country => {
             renderCountry(country[0])
-            console.log(country)
         })
         .catch(err => {
             console.error(`Encountered the following error while fetching data: ${err}`)
@@ -27,9 +26,9 @@ elGetCountryBtn.addEventListener('click', function () {
 })
 
 function renderCountry(country) {
-    // console.log(country)
+    
     const { countryName, population, area, neighbors, flag } = country
-    console.log(countryName, population, area, neighbors, flag)
+    
     const elCountryName = document.querySelector('.name')
     elCountryName.innerText = `Country name: ${countryName}`
 
