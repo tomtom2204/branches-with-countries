@@ -7,7 +7,7 @@ let gCountriesCache = loadFromStorage(STORAGE_KEY) || {}
 
 function getCountryByName(name) {
 
-    if (gCountriesCache[name]) return Promise.resolve(gCountriesCache[name].data)
+    if (gCountriesCache[name]) return Promise.resolve(gCountriesCache)
 
     return axios.get(`https://restcountries.com/v3.1/name/${name}`)
         .then(res => {
@@ -17,10 +17,12 @@ function getCountryByName(name) {
                 ts: Date.now(),
                 data: getCountry(countryData),
             }
-            console.log('test: ', gCountriesCache[name].data)
-            saveToStorage('countryData', gCountriesCache)
-            return gCountriesCache[name].data
-        })
+            return gCountriesCache
+        }).then(gCountriesCache => {
+            saveToStorage(STORAGE_KEY, gCountriesCache)
+            return gCountriesCache
+        }
+        )
 }
 
 function getCountry(country) {

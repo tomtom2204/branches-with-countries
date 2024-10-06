@@ -15,10 +15,10 @@ elGetCountryBtn.addEventListener('click', function () {
     // alert('Button was clicked!')
     const elCountryName = document.querySelector('.country-name')
     const countryName = elCountryName.value
-    console.log(countryName)
+    // console.log(countryName)
     getCountryByName(countryName)
         .then(country => {
-            renderCountry(country)
+            renderCountry(country[countryName].data)
         })
         .catch(err => {
             console.error(`Encountered the following error while fetching data: ${err}`)
