@@ -33,7 +33,7 @@ elGetCountryBtn.addEventListener('click', function () {
 
 function renderCountry(country) {
     console.log(country)
-    const { countryName, population, area, neighbors, flag } = country
+    const { countryName, population, area, neighbors, flag , map} = country
     
     const elCountryName = document.querySelector('.name')
     elCountryName.innerText = `Country name: ${countryName}`
@@ -46,6 +46,9 @@ function renderCountry(country) {
 
     const elArea = document.querySelector('.area')
     elArea.innerText = `area: ${area}`
+
+    const elMap = document.querySelector('.map')
+    elMap.href = map
 
 }
 

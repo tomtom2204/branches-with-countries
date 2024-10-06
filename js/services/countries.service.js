@@ -12,7 +12,6 @@ function getCountryByName(name) {
     return axios.get(`https://restcountries.com/v3.1/name/${name}`)
         .then(res => {
             const countryData = res.data
-
             gCountriesCache[name] = {
                 ts: Date.now(),
                 data: getCountry(countryData),
@@ -34,8 +33,10 @@ function getCountry(country) {
             population: country.population,
             area: country.area,
             neighbors: country.borders,
-            flag: country.flags.png
+            flag: country.flags.png,
+            map: country.maps.googleMaps
         }
     })
+    // console.log( 'tttttttttttttttttttttttttttttttt',data)
     return data
 }
