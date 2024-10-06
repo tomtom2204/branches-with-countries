@@ -48,6 +48,9 @@ function renderCountry(country) {
     const elArea = document.querySelector('.area')
     elArea.innerText = `area: ${area}`
 
+    const elMap = document.querySelector('.map')
+    elMap.href = map
+    
     let strHtml ='';
     for(let n in neighbors) {
         strHtml += `<a class="neighbors" onclick="onGetCountryByCode('${neighbors[n]}')">${neighbors[n]}</a>`
@@ -76,8 +79,7 @@ function onGetCountryByCode(code){
         .catch(err => {
             console.error(`Encountered the following error while fetching data: ${err}`)
         })
-    const elMap = document.querySelector('.map')
-    elMap.href = map
+   
 
 }
 
