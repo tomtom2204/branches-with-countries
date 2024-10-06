@@ -8,7 +8,6 @@ let gCountriesCache = loadFromStorage(STORAGE_KEY) || {}
 function getCountryByName(name) {
 
     if (gCountriesCache[name]) return Promise.resolve(gCountriesCache[name])
-    if (gCountriesCache[name]) return Promise.resolve(gCountriesCache[name])
 
     return axios.get(`https://restcountries.com/v3.1/name/${name}`)
         .then(res => {
@@ -22,7 +21,7 @@ function getCountryByName(name) {
         }).then(gCountriesCache => {
             saveToStorage(STORAGE_KEY, gCountriesCache)
             return gCountriesCache[name]
-            return gCountriesCache[name] 
+            
         }
         )
 }
