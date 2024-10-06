@@ -8,10 +8,11 @@ function renderInfo(data) {
     console.log('Rendering...')
 }
 
-const elGetCountryBtn = document.querySelector('.get-country')
+const elGetCountryBtn = document.querySelector('form')
 
 // Add a click event listener
-elGetCountryBtn.addEventListener('click', function () {
+elGetCountryBtn.addEventListener('submit', function (ev) {
+    ev.preventDefault()
     hideCountry()
     showLoader()
     const elCountryName = document.querySelector('.country-name')

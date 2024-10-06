@@ -14,13 +14,14 @@
 
 <body>
     <h1>Countries</h1>
-
-    <input class="country-name" type="text" placeholder="Search for countries" value="Israel">
-    <button class="btn get-country">Get Country</button>
+    <form>
+        <input class="country-name" type="text" placeholder="Search for countries" value="Israel">
+        <input class="btn get-country" type="submit" value="Get Country">
+    </form>
+    <button class="btn clear-cache" onclick="onClearCache()">Clear Cache</button>
     <div class="main-data">
         <section class="country-info hidden">
-            <button class="btn get-country" onclick="onClearCache()">Clear Cache</button>
-        <img src="" alt="" class="flag">
+            <img src="" alt="" class="flag">
             <h2 class="name"></h2>
             <p class="population"></p>
             <p class="area"></p>
@@ -29,7 +30,7 @@
             <img src="img/loader.svg" width="350" alt="">
         </div>
     </div>
-   
+
     <script src="lib/axios.js"></script>
     <script src="js/services/storage.service.js"></script>
     <script src="js/services/countries.service.js"></script>
