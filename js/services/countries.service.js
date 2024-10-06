@@ -5,21 +5,21 @@ const CACHE_TIMEOUT = 1_000_000_000
 let gCountriesCache = loadFromStorage(STORAGE_KEY) || {}
 
 
-function getCountryData(countryName) {
+function getCountryByName(name) {
 
-    if (gCountriesCache[countryName]) return Promise.resolve(gCountriesCache[countryName].data)
+    if (gCountriesCache[name]) return Promise.resolve(gCountriesCache[name].data)
 
-    return axios.get(`https://restcountries.com/v3.1/name/${countryName}`)
+    return axios.get(`https://restcountries.com/v3.1/name/${name}`)
         .then(res => {
             const countryData = res.data
 
-            gCountriesCache[countryName] = {
+            gCountriesCache[name] = {
                 ts: Date.now(),
                 data: getCountry(countryData),
             }
-            console.log('test: ', gCountriesCache[countryName].data)
+            console.log('test: ', gCountriesCache[name].data)
             saveToStorage('countryData', gCountriesCache)
-            return gCountriesCache[countryName].data
+            return gCountriesCache[name].data
         })
 }
 
