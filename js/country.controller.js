@@ -16,9 +16,10 @@ elGetCountryBtn.addEventListener('click', function () {
     const elCountryName = document.querySelector('.country-name')
     const countryName = elCountryName.value
 
-    getCountryData(countryName)
+    getCountryByName(countryName)
         .then(country => {
-            renderCountry(country[0])
+            console.log(country)
+            renderCountry(country.data[0])
         })
         .catch(err => {
             console.error(`Encountered the following error while fetching data: ${err}`)
@@ -26,7 +27,7 @@ elGetCountryBtn.addEventListener('click', function () {
 })
 
 function renderCountry(country) {
-    
+    console.log(country)
     const { countryName, population, area, neighbors, flag } = country
     
     const elCountryName = document.querySelector('.name')
@@ -41,5 +42,10 @@ function renderCountry(country) {
     const elArea = document.querySelector('.area')
     elArea.innerText = `area: ${area}`
 
+}
+
+function onClearCache(){
+    saveToStorage(STORAGE_KEY, {})
+    gCountriesCache = loadFromStorage(STORAGE_KEY) || {}
 }
 
