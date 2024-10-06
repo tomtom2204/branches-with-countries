@@ -8,10 +8,11 @@ function renderInfo(data) {
     console.log('Rendering...')
 }
 
-const elGetCountryBtn = document.querySelector('.get-country')
+const elGetCountryBtn = document.querySelector('form')
 
 // Add a click event listener
-elGetCountryBtn.addEventListener('click', function () {
+elGetCountryBtn.addEventListener('submit', function (ev) {
+    ev.preventDefault()
     hideCountry()
     showLoader()
     const elCountryName = document.querySelector('.country-name')
@@ -33,7 +34,7 @@ elGetCountryBtn.addEventListener('click', function () {
 
 function renderCountry(country) {
     console.log(country)
-    const { countryName, population, area, neighbors, flag } = country
+    const { countryName, population, area, neighbors, flag , map} = country
     
     const elCountryName = document.querySelector('.name')
     elCountryName.innerText = `Country name: ${countryName}`
@@ -75,6 +76,9 @@ function onGetCountryByCode(code){
         .catch(err => {
             console.error(`Encountered the following error while fetching data: ${err}`)
         })
+    const elMap = document.querySelector('.map')
+    elMap.href = map
+
 }
 
 function onClearCache(){
