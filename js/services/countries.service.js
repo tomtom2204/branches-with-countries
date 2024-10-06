@@ -39,3 +39,24 @@ function getCountry(country) {
     })
     return data
 }
+
+function getCountryByCode(code){
+    if (gCountriesCache[code]) return Promise.resolve(gCountriesCache[code])
+
+        return axios.get(`https://restcountries.com/v3.1/alpha/${code}`)
+            .then(res => {
+                const countryData = res.data
+    
+                gCountriesCache[code] = {
+                    ts: Date.now(),
+                    data: getCountry(countryData),
+                }
+                return gCountriesCache
+            }).then(gCountriesCache => {
+                saveToStorage(STORAGE_KEY, gCountriesCache)
+                return gCountriesCache[code]
+                
+            }
+            )
+
+}
