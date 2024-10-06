@@ -47,6 +47,34 @@ function renderCountry(country) {
     const elArea = document.querySelector('.area')
     elArea.innerText = `area: ${area}`
 
+    let strHtml ='';
+    for(let n in neighbors) {
+        strHtml += `<a class="neighbors" onclick="onGetCountryByCode('${neighbors[n]}')">${neighbors[n]}</a>`
+    }
+  
+
+    const elNeighbors = document.querySelector('.neighbors-btn')
+    elNeighbors.innerHTML = strHtml
+
+}
+
+function onGetCountryByCode(code){
+    hideCountry()
+    showLoader()
+    
+
+    getCountryByCode(code)
+        .then(country => {
+            console.log('country', country)
+            renderCountry(country.data[0])
+            hideLoader()
+            showCountry()
+            console.log(country)
+            renderCountry(country.data[0])
+        })
+        .catch(err => {
+            console.error(`Encountered the following error while fetching data: ${err}`)
+        })
 }
 
 function onClearCache(){
